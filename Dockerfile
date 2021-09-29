@@ -62,8 +62,8 @@ LABEL com.github.actions.name="clang-format container" \
     org.opencontainers.image.version=$BUILD_VERSION \
     org.opencontainers.image.authors="Admiralawkbar <dank.memes@github.com>" \
     org.opencontainers.image.url="https://github.com/awkbar-devops/clang-format" \
-    org.opencontainers.image.source="https://github.com/ukaspersonal/clang-format" \
-    org.opencontainers.image.documentation="https://github.com/ukaspersonal/clang-formatr" \
+    org.opencontainers.image.source="https://github.com/awkbar-devops/clang-format" \
+    org.opencontainers.image.documentation="https://github.com/awkbar-devops/clang-formatr" \
     org.opencontainers.image.vendor="AdmiralAwkbar" \
     org.opencontainers.image.description="Lint your code base with clang-format"
 
