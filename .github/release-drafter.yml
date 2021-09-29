@@ -4,7 +4,7 @@ template: |
   # Changelog
   $CHANGES
 
-  See details of [all code changes](https://github.com/lukaspersonal/clang-format/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION) since previous release
+  See details of [all code changes](https://github.com/awkbar-devops/clang-format/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION) since previous release
 
 categories:
   - title: '🚀 Features'

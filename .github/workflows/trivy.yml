@@ -22,7 +22,7 @@ jobs:
       # ##########################
       - name: Build an image from Dockerfile
         run: |
-          docker build -t "ghcr.io/lukaspersonal/clang-format:${{ github.sha }}" .
+          docker build -t "ghcr.io/awkbar-devops/clang-format:${{ github.sha }}" .
 
       #################################
       # Run Trivy Scan of source code #

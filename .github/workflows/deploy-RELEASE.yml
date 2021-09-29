@@ -111,9 +111,9 @@ jobs:
             BUILD_VERSION=${{ github.sha }}
           push: true
           tags: |
-            ghcr.io/lukaspersonal/clang-format:latest
-            ghcr.io/lukaspersonal/clang-format:v4
-            "ghcr.io/lukaspersonal/clang-format:${{ env.RELEASE_VERSION }}"
+            ghcr.io/awkbar-devops/clang-format:latest
+            ghcr.io/awkbar-devops/clang-format:v4
+            "ghcr.io/awkbar-devops/clang-format:${{ env.RELEASE_VERSION }}"
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
 
@@ -139,7 +139,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ job.status }}
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
-          env_url: https://github.com/lukaspersonal/clang-format/releases/tag/${{ env.RELEASE_VERSION }}
+          env_url: https://github.com/awkbar-devops/clang-format/releases/tag/${{ env.RELEASE_VERSION }}
 
       #######################################################
       # Create a GitHub Issue with the info from this build #

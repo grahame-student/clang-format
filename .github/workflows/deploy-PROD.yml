@@ -29,7 +29,7 @@ jobs:
     # Set the agent to run on
     runs-on: ubuntu-latest
     # Only run this on the main repo
-    if: ${{ github.repository == 'lukaspersonal/clang-format' }}
+    if: ${{ github.repository == 'awkbar-devops/clang-format' }}
     ##################
     # Load all steps #
     ##################
@@ -98,7 +98,7 @@ jobs:
             BUILD_VERSION=${{ github.sha }}
           push: true
           tags: |
-            ghcr.io/lukaspersonal/clang-format:latest
+            ghcr.io/awkbar-devops/clang-format:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
 
@@ -163,4 +163,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ job.status }}
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
-          env_url: https://github.com/lukaspersonal/clang-format
+          env_url: https://github.com/awkbar-devops/clang-format

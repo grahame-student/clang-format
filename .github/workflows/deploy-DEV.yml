@@ -84,8 +84,8 @@ jobs:
           load: true
           push: false
           tags: |
-            "ghcr.io/lukaspersonal/clang-format:${{ github.sha }}"
-            ghcr.io/lukaspersonal/clang-format:test
+            "ghcr.io/awkbar-devops/clang-format:${{ github.sha }}"
+            ghcr.io/awkbar-devops/clang-format:test
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
 
