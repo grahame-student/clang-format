@@ -50,8 +50,20 @@ FROM alpine:latest as final
 #########################################
 # Label the instance and set maintainer #
 #########################################
-LABEL io.whalebrew.name 'clang-format'
-LABEL io.whalebrew.config.working_dir '/workdir'
+LABEL com.github.actions.name="clang-format container" \
+    com.github.actions.description="Lint your code base with clang-format" \
+    com.github.actions.icon="code" \
+    com.github.actions.color="red" \
+    maintainer="Admiralawkbar <dank.memes@github.com>" \
+    org.opencontainers.image.created=$BUILD_DATE \
+    org.opencontainers.image.revision=$BUILD_REVISION \
+    org.opencontainers.image.version=$BUILD_VERSION \
+    org.opencontainers.image.authors="Admiralawkbar <dank.memes@github.com>" \
+    org.opencontainers.image.url="https://github.com/lukaspersonal/clang-format" \
+    org.opencontainers.image.source="https://github.com/ukaspersonal/clang-format" \
+    org.opencontainers.image.documentation="https://github.com/ukaspersonal/clang-formatr" \
+    org.opencontainers.image.vendor="AdmiralAwkbar" \
+    org.opencontainers.image.description="Lint your code base with clang-format"
 
 #######################
 # Set the working dir #
