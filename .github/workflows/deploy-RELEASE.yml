@@ -112,7 +112,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/awkbar-devops/clang-format:latest
-            ghcr.io/awkbar-devops/clang-format:v4
+            ghcr.io/awkbar-devops/clang-format:v1
             "ghcr.io/awkbar-devops/clang-format:${{ env.RELEASE_VERSION }}"
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
