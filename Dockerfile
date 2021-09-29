@@ -4,48 +4,50 @@
 ############################
 ############################
 
-#################
-# Pull in image #
-#################
-FROM alpine:latest as clang-format
+#################################
+# Build the clang-format binary #
+#################################
+FROM alpine:3.14.2
 
 ######################
 # Build dependencies #
 ######################
-RUN apk update \
-    && apk add --no-cache \
-    git \
+# hadolint ignore=DL3018
+RUN apk add --no-cache \
     build-base \
-    ninja \
+    clang \
     cmake \
+    git \
+    ninja \
     python3
 
 #############################################################
 # Pass `--build-arg LLVM_TAG=master` for latest llvm commit #
 #############################################################
 ARG LLVM_TAG
-ENV LLVM_TAG ${LLVM_TAG:-llvmorg-12.0.1}
+ENV LLVM_TAG llvmorg-12.0.1
 
 ######################
 # Download and setup #
 ######################
-WORKDIR /build
-RUN git clone --branch ${LLVM_TAG} --depth 1 https://github.com/llvm/llvm-project.git
-WORKDIR /build/llvm-project
-RUN mv clang llvm/tools \
-    && mv libcxx llvm/projects
+WORKDIR /tmp
+RUN git clone \
+    --branch ${LLVM_TAG} \
+    --depth 1 \
+    https://github.com/llvm/llvm-project.git
 
-##############
-# Build tool #
-##############
-WORKDIR llvm/build
-RUN cmake -GNinja -DLLVM_BUILD_STATIC=ON -DLLVM_ENABLE_LIBCXX=ON .. \
-    && ninja clang-format
-
-################################################################################
-# Install to clean environment #################################################
-################################################################################
-FROM alpine:latest as final
+#########
+# Build #
+#########
+WORKDIR /tmp/llvm-project/llvm/build
+RUN cmake -GNinja -DCMAKE_BUILD_TYPE=MinSizeRel -DLLVM_BUILD_STATIC=ON \
+    -DLLVM_ENABLE_PROJECTS=clang -DCMAKE_C_COMPILER=clang \
+    -DCMAKE_CXX_COMPILER=clang++ .. \
+    && ninja clang-format \
+############################
+# Copy into final location #
+############################
+    && mv /tmp/llvm-project/llvm/build/bin/clang-format /usr/bin
 
 #########################################
 # Label the instance and set maintainer #
@@ -64,17 +66,7 @@ LABEL com.github.actions.name="clang-format container" \
     org.opencontainers.image.documentation="https://github.com/ukaspersonal/clang-formatr" \
     org.opencontainers.image.vendor="AdmiralAwkbar" \
     org.opencontainers.image.description="Lint your code base with clang-format"
-
-#######################
-# Set the working dir #
-#######################
-WORKDIR /workdir
-
-##############################
-# Copy from build into final #
-##############################
-COPY --from=clang-format /build/llvm-project/llvm/build/bin/clang-format /usr/bin
-
+        
 ######################
 # Set the entrypoint #
 ######################
