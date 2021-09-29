@@ -12,6 +12,7 @@ FROM alpine:3.14.2
 ######################
 # Build dependencies #
 ######################
+# hadolint ignore=DL3018
 RUN apk add --no-cache \
     build-base \
     clang \
