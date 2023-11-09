@@ -17,6 +17,8 @@
 # Start the job on all push #
 #############################
 on:
+  workflow_dispatch:
+  
   push:
     branches-ignore: [master, main]
 
@@ -84,8 +86,8 @@ jobs:
           load: true
           push: false
           tags: |
-            "ghcr.io/awkbar-devops/clang-format:${{ github.sha }}"
-            ghcr.io/awkbar-devops/clang-format:test
+            "ghcr.io/grahame-student/clang-format:${{ github.sha }}"
+            ghcr.io/grahame-student/clang-format:test
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
 
