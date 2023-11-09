@@ -25,7 +25,7 @@ RUN apk add --no-cache \
 # Pass `--build-arg LLVM_TAG=master` for latest llvm commit #
 #############################################################
 ARG LLVM_TAG
-ENV LLVM_TAG llvmorg-12.0.1
+ENV LLVM_TAG llvmorg-17.0.4
 
 ######################
 # Download and setup #
