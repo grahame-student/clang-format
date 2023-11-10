@@ -14,10 +14,7 @@
 # Start the job on all push to master #
 #######################################
 on:
-  push:
-    branches:
-      - 'master'
-      - 'main'
+  workflow_dispatch
 
 ###############
 # Set the Job #
